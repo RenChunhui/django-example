@@ -1,0 +1,22 @@
+{% extends "layouts/empty.html" %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <h2>账号登录</h2>
+
+  {% for field in form %}
+    {{ field.label_tag }}
+    {{ field }}
+    {% if field.errors %}
+      <small>{{ field.errors|striptags }}</small>
+    {% endif %}
+  {% endfor %}
+
+  <button type="submit">登录</button>
+  <hr>
+  <p class="text-center">忘记密码？<a href="#">重置</a></p>
+  <p class="text-center">还没有注册账号？<a href="#">加入</a></p>
+</form>
+{% endblock %}
+
