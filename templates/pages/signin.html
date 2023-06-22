@@ -1,22 +1,35 @@
 {% extends "layouts/empty.html" %}
 
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  <h2>账号登录</h2>
+<div class="relative flex flex-1 flex-col justify-center items-center pb-16 pt-12">
+  <img src="https://cdn.worldvectorlogo.com/logos/django-community.svg" class="w-auto h-6 mb-16">
+  <form method="post" class="w-full max-w-sm">
+    {% csrf_token %}
 
-  {% for field in form %}
-    {{ field.label_tag }}
-    {{ field }}
-    {% if field.errors %}
+    {% for field in form %}
+      <div class="mb-6">
+        {{ field.label_tag }}
+        {{ field}}
+      </div>
+      {% if field.errors %}
       <small>{{ field.errors|striptags }}</small>
-    {% endif %}
-  {% endfor %}
+      {% endif %}
+    {% endfor %}
 
-  <button type="submit">登录</button>
-  <hr>
-  <p class="text-center">忘记密码？<a href="#">重置</a></p>
-  <p class="text-center">还没有注册账号？<a href="#">加入</a></p>
-</form>
+    <button type="submit" class="inline-flex justify-center text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700 w-full">
+      <span>Sign in to account</span>
+    </button>
+    <hr>
+    <p class="mt-8 text-center">
+      <a href="/" class="text-sm hover:underline">Forgot password?</a>
+    </p>
+  </form>
+</div>
+
+<footer class="relative shrink-0"><div class="space-y-4 text-sm text-gray-900 sm:flex sm:items-center sm:justify-center sm:space-x-4 sm:space-y-0">
+  <p class="text-center sm:text-left">Don't have an account?</p>
+  <a class="inline-flex justify-center text-sm font-semibold py-2.5 px-4 text-slate-900 ring-1 ring-slate-900/10 hover:ring-slate-900/20" href="/all-access">
+    <span>Sign up</span>
+  </a></div>
+</footer>
 {% endblock %}
-
